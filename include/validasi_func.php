@@ -25,37 +25,30 @@ function checkIt(evt,siiner,sipesan)
 
 
 
-//bbm
+//barcode
 $(document).ready(function() {
-	 $("#bbm_view").load("main/bbm_view.php");
-	 $("#addbbm").submit(function() 
+	 $("#barcode_view").load("main/barcode_view.php");
+	 $("#addbarcode").submit(function() 
 	{
 				
-		if (!Cekkarakter(this.nama_bbm.value)) 
+		if (!Cekkarakter(this.nomor_barcode.value)) 
 		{
-			document.getElementById('alert_nama_bbm').innerHTML='Nama BBM Tidak Valid';
-			this.nama_bbm.focus();
+			document.getElementById('alert_nomor_barcode').innerHTML='Nomor barcode Tidak Valid';
+			this.nomor_barcode.focus();
 			return (false);
-		}else{ document.getElementById('alert_nama_bbm').innerHTML='';}
-		if (!Cekkarakter(this.harga_bbm.value)) 
-		{
-			document.getElementById('alert_harga_bbm').innerHTML='Harga BBM Tidak Valid';
-			this.harga_bbm.focus();
-			return (false);
-		}else{ document.getElementById('alert_harga_bbm').innerHTML='';}
-		
-			$.post('include/lib_func.php?kd=add_bbm', {
-			st_bbm :$("#st_bbm").val(),
-		 	id_bbm : $('#id_bbm').val(),			
-			nama_bbm : $('#nama_bbm').val(),
-			harga_bbm : $('#harga_bbm').val()
+		}else{ document.getElementById('alert_nomor_barcode').innerHTML='';}
+				
+			$.post('include/lib_func.php?kd=add_barcode', {
+			st_barcode :$("#st_barcode").val(),
+		 	id_barcode : $('#id_barcode').val(),			
+			nomor_barcode : $('#nomor_barcode').val()
 			},function(data) {
 			document.getElementById('hasil').innerHTML=data;
-			$("#bbm_view").load("main/bbm_view.php");
-			if(($("#st_bbm").val()) != "edit")
+			$("#barcode_view").load("main/barcode_view.php");
+			if(($("#st_barcode").val()) != "edit")
 			{
-				nama_bbm : $('#nama_bbm').val("");
-				harga_bbm : $('#harga_bbm').val("");
+				id_barcode : $('#id_barcode').val("");
+				nomor_barcode : $('#nomor_barcode').val("");
 			}
 			
 			
@@ -66,44 +59,62 @@ $(document).ready(function() {
    
 });
 
-//limit
+//barang
+function nobar(addbarang)
+{
+    <?php
+    $querys = mysql_query("select id_barang from tb_barang",koneksi_db());
+    
+    while ($datas = mysql_fetch_array($querys))
+    {
+        $id_barang = $datas['id_barang'];
+        echo "if (document.addkerjaan.id_barang.value == \"".$id_barang."\"){";
+        echo "document.getElementById('alert_id_barang').innerHTML='ID Barang Sudah Dipakai';";
+        echo "document.addkerjaan.id_barang.value = \"\";";
+        echo "document.addkerjaan.id_barang.focus();";
+        echo "return(false);}";     
+    }
+  
+   ?>
+   
+}
+
+
 $(document).ready(function() {
-	 $("#limit_bbm_view").load("main/limit_view.php");
-	 $("#addlimit").submit(function() 
+
+	 $("#barang_view").load("main/barang_view.php");
+	 $("#addbarang").submit(function() 
 	{
 				
-		if (!Cekkarakter(this.nama_limit.value)) 
+		if (!Cekkarakter(this.id_barang.value)) 
 		{
-			document.getElementById('alert_nama_limit').innerHTML='Nama Limit Tidak Valid';
-			this.nama_limit.focus();
+			document.getElementById('alert_id_barang').innerHTML='ID Barang Tidak Valid';
+			this.id_barang.focus();
 			return (false);
-		}else{ document.getElementById('alert_nama_limit').innerHTML='';}
-
-		if (!Cekkarakter(this.jumlah_limit.value)) 
+		}else{ document.getElementById('alert_id_barang').innerHTML='';}
+				
+		if (!Cekkarakter(this.nama_barang.value)) 
 		{
-			document.getElementById('alert_jumlah_limit').innerHTML='Jumlah Limit BBM Tidak Valid';
-			this.jumlah_limit.focus();
+			document.getElementById('alert_nama_barang').innerHTML='Nama Barang Tidak Valid';
+			this.nama_barang.focus();
 			return (false);
-		}else{ document.getElementById('alert_jumlah_limit').innerHTML='';}
-		
+		}else{ document.getElementById('alert_nama_barang').innerHTML='';}
 
-			$.post('include/lib_func.php?kd=add_limit', {
-			st_limit :$("#st_limit").val(),
-		 	id_limit : $('#id_limit').val(),			
-			nama_limit : $('#nama_limit').val(),
-			jumlah_limit : $('#jumlah_limit').val(),
-			id_bbm : $('#id_bbm').val()
+			$.post('include/lib_func.php?kd=add_barang', {
+			st_barang :$("#st_barang").val(),
+			id_barang :$("#id_barang").val(),
+		 	nama_barang: $('#nama_barang').val(),		
+			id_listkerjaan : $('#id_listkerjaan').val()
 			},function(data) {
 
 			document.getElementById('hasil').innerHTML=data;
-			 $("#limit_bbm_view").load("main/limit_view.php");
+			$("#barang_view").load("main/barang_view.php");
 
-			if(($("#st_limit").val()) != "edit")
+			if(($("#st_barang").val()) != "edit")
 			{
-				nama_limit : $('#nama_limit').val("");
-				jumlah_limit : $('#jumlah_limit').val("");
+			id_barang :$("#id_barang").val("");
+		 	nama_barang : $('#nama_barang').val("");		
 			}
-			
 			
 		});
 		return false;
@@ -112,22 +123,22 @@ $(document).ready(function() {
    
 });
 
-//spbu
-function userval(addspbu)
+//users
+function userval(addusers)
 {
     
     
     <?php
-    $query = mysql_query("select email from tb_spbu",koneksi_db());
+    $query = mysql_query("select email from tb_users",koneksi_db());
     
     while ($data = mysql_fetch_array($query))
     {
         $email = $data['email'];
-        echo "if (document.addspbu.email_spbu.value == \"".$email."\"){";
+        echo "if (document.addusers.email_users.value == \"".$email."\"){";
         //echo "alert('Email sudah dipakai');"; 
-        echo "document.getElementById('alert_email_spbu').innerHTML='Email Sudah Dipakai';";
-        echo "document.addspbu.email_spbu.value = \"\";";
-        echo "document.addspbu.email_spbu.focus();";
+        echo "document.getElementById('alert_email_users').innerHTML='Email Sudah Dipakai';";
+        echo "document.addusers.email_users.value = \"\";";
+        echo "document.addusers.email_users.focus();";
         echo "return(false);}";     
     }
   
@@ -136,53 +147,44 @@ function userval(addspbu)
 }
 $(document).ready(function() {
 
-	 $("#spbu_view").load("main/spbu_view.php");
-	 $("#addspbu").submit(function() 
+	 $("#users_view").load("main/users_view.php");
+	 $("#addusers").submit(function() 
 	{
 				
-		if (!Cekkarakter(this.nama_spbu.value)) 
+		if (!Cekkarakter(this.nama_users.value)) 
 		{
-			document.getElementById('alert_nama_spbu').innerHTML='Nama SPBU Tidak Valid';
-			this.nama_spbu.focus();
+			document.getElementById('alert_nama_users').innerHTML='Nama users Tidak Valid';
+			this.nama_users.focus();
 			return (false);
-		}else{ document.getElementById('alert_nama_spbu').innerHTML='';}
+		}else{ document.getElementById('alert_nama_users').innerHTML='';}
 				
-		if (!Cekkarakter(this.alamat_spbu.value)) 
+		if (!Cekkarakter(this.id_users.value)) 
 		{
-			document.getElementById('alert_alamat_spbu').innerHTML='Alamat SPBU Tidak Valid';
-			this.alamat_spbu.focus();
+			document.getElementById('alert_id_users').innerHTML='id users Tidak Valid';
+			this.id_users.focus();
 			return (false);
-		}else{ document.getElementById('alert_alamat_spbu').innerHTML='';}
-
-		if (!Cekkarakter(this.pemilik_spbu.value)) 
-		{
-			document.getElementById('alert_pemilik_spbu').innerHTML='Pemilik SPBU Tidak Valid';
-			this.pemilik_spbu.focus();
-			return (false);
-		}else{ document.getElementById('alert_pemilik_spbu').innerHTML='';}
+		}else{ document.getElementById('alert_id_users').innerHTML='';}
 		
-		if (!CekEmail(this.email_spbu.value)) 
+		if (!CekEmail(this.email_users.value)) 
 		{
-			document.getElementById('alert_email_spbu').innerHTML='Email SPBU Tidak Valid';
-			this.email_spbu.focus();
+			document.getElementById('alert_email_users').innerHTML='Email users Tidak Valid';
+			this.email_users.focus();
 			return (false);
-		}else{ document.getElementById('alert_email_spbu').innerHTML='';}
+		}else{ document.getElementById('alert_email_users').innerHTML='';}
 		
 
-			$.post('include/lib_func.php?kd=add_spbu', {
-			nama_spbu :$("#nama_spbu").val(),
-		 	alamat_spbu : $('#alamat_spbu').val(),			
-			pemilik_spbu : $('#pemilik_spbu').val(),
-			email_spbu : $('#email_spbu').val()
+			$.post('include/lib_func.php?kd=add_users', {
+			nama_users :$("#nama_users").val(),
+		 	id_users : $('#id_users').val(),			
+			email_users : $('#email_users').val()
 			},function(data) {
 
 			document.getElementById('hasil').innerHTML=data;
-			$("#spbu_view").load("main/spbu_view.php");
+			$("#users_view").load("main/users_view.php");
 
-			 nama_spbu :$("#nama_spbu").val("");
-		 	alamat_spbu : $('#alamat_spbu').val("");			
-			pemilik_spbu : $('#pemilik_spbu').val("");
-			email_spbu : $('#email_spbu').val("");
+			 nama_users :$("#nama_users").val("");
+		 	id_users : $('#id_users').val("");			
+			email_users : $('#email_users').val("");
 	
 			
 			
@@ -193,19 +195,19 @@ $(document).ready(function() {
    
 });
 
-//kendaraan
-function nopol(addkendaraan)
+//kerjaan
+function nopol(addkerjaan)
 {
     <?php
-    $querys = mysql_query("select no_kendaraan from tb_kendaraan",koneksi_db());
+    $querys = mysql_query("select no_kerjaan from tb_kerjaan",koneksi_db());
     
     while ($datas = mysql_fetch_array($querys))
     {
-        $no_kendaraan = $datas['no_kendaraan'];
-        echo "if (document.addkendaraan.no_kendaraan.value == \"".$no_kendaraan."\"){";
-        echo "document.getElementById('alert_no_kendaraan').innerHTML='Nomer Kendaraan Sudah Dipakai';";
-        echo "document.addkendaraan.no_kendaraan.value = \"\";";
-        echo "document.addkendaraan.no_kendaraan.focus();";
+        $no_kerjaan = $datas['no_kerjaan'];
+        echo "if (document.addkerjaan.no_kerjaan.value == \"".$no_kerjaan."\"){";
+        echo "document.getElementById('alert_no_kerjaan').innerHTML='Nomer kerjaan Sudah Dipakai';";
+        echo "document.addkerjaan.no_kerjaan.value = \"\";";
+        echo "document.addkerjaan.no_kerjaan.focus();";
         echo "return(false);}";     
     }
   
@@ -216,84 +218,47 @@ function nopol(addkendaraan)
 
 $(document).ready(function() {
 
-	 $("#kendaraan_view").load("main/kendaraan_view.php");
-	 $("#addkendaraan").submit(function() 
+	 $("#kerjaan_view").load("main/kerjaan_view.php");
+	 $("#addkerjaan").submit(function() 
 	{
 				
-		if (!Cekkarakter(this.no_kendaraan.value)) 
+		if (!Cekkarakter(this.no_kerjaan.value)) 
 		{
-			document.getElementById('alert_no_kendaraan').innerHTML='No Kendaraan Tidak Valid';
-			this.no_kendaraan.focus();
+			document.getElementById('alert_no_kerjaan').innerHTML='No kerjaan Tidak Valid';
+			this.no_kerjaan.focus();
 			return (false);
-		}else{ document.getElementById('alert_no_kendaraan').innerHTML='';}
+		}else{ document.getElementById('alert_no_kerjaan').innerHTML='';}
 				
-		if (!Cekkarakter(this.nama_pemilik.value)) 
+		if (!Cekkarakter(this.nama_kerjaan.value)) 
 		{
-			document.getElementById('alert_nama_pemilik').innerHTML='Nama Pemilik Tidak Valid';
-			this.nama_pemilik.focus();
+			document.getElementById('alert_nama_kerjaan').innerHTML='Nama Pemilik Tidak Valid';
+			this.nama_kerjaan.focus();
 			return (false);
-		}else{ document.getElementById('alert_nama_pemilik').innerHTML='';}
+		}else{ document.getElementById('alert_nama_kerjaan').innerHTML='';}
 
-		if (!Cekkarakter(this.alamat_pemilik.value)) 
+		if (!Cekkarakter(this.status_kerjaan.value)) 
 		{
-			document.getElementById('alert_alamat_pemilik').innerHTML='Alamat Pemilik Tidak Valid';
-			this.alamat_pemilik.focus();
+			document.getElementById('alert_status_kerjaan').innerHTML='Status Kerjaan Tidak Valid';
+			this.status_kerjaan.focus();
 			return (false);
-		}else{ document.getElementById('alert_alamat_pemilik').innerHTML='';}
-		
-		if (!Cekkarakter(this.merk_kendaraan.value)) 
-		{
-			document.getElementById('alert_merk_kendaraan').innerHTML='Merk Kendaraan Tidak Valid';
-			this.merk_kendaraan.focus();
-			return (false);
-		}else{ document.getElementById('alert_merk_kendaraan').innerHTML='';}
+		}else{ document.getElementById('alert_status_kerjaan').innerHTML='';}	
 
-		if (!Cekkarakter(this.tahun_kendaraan.value)) 
-		{
-			document.getElementById('alert_tahun_kendaraan').innerHTML='Tahun Kendaraan Tidak Valid';
-			this.tahun_kendaraan.focus();
-			return (false);
-		}else{ document.getElementById('alert_tahun_kendaraan').innerHTML='';}
-
-		if (!Cekkarakter(this.jumlah_roda.value)) 
-		{
-			document.getElementById('alert_jumlah_roda').innerHTML='Jumlah Roda Kendaraan Tidak Valid';
-			this.jumlah_roda.focus();
-			return (false);
-		}else{ document.getElementById('alert_jumlah_roda').innerHTML='';}
-
-		if (!Cekkarakter(this.kapasitas_kendaraan.value)) 
-		{
-			document.getElementById('alert_kapasitas_kendaraan').innerHTML='Kapasitas CC Kendaraan Tidak Valid';
-			this.kapasitas_kendaraan.focus();
-			return (false);
-		}else{ document.getElementById('alert_kapasitas_kendaraan').innerHTML='';}
-		
-
-			$.post('include/lib_func.php?kd=add_kendaraan', {
-			st_kendaraan :$("#st_kendaraan").val(),
-			no_kendaraan :$("#no_kendaraan").val(),
-		 	nama_pemilik : $('#nama_pemilik').val(),			
-			alamat_pemilik : $('#alamat_pemilik').val(),
-			merk_kendaraan : $('#merk_kendaraan').val(),
-			tahun_kendaraan : $('#tahun_kendaraan').val(),
-			jumlah_roda : $('#jumlah_roda').val(),
-			kapasitas_kendaraan : $('#kapasitas_kendaraan').val(),
-			id_limit : $('#id_limit').val()
+			$.post('include/lib_func.php?kd=add_kerjaan', {
+			st_kerjaan :$("#st_kerjaan").val(),
+			no_kerjaan :$("#no_kerjaan").val(),
+		 	nama_kerjaan: $('#nama_kerjaan').val(),			
+			status_kerjaan : $('#status_kerjaan').val(),
+			id_listkerjaan : $('#id_listkerjaan').val()
 			},function(data) {
 
 			document.getElementById('hasil').innerHTML=data;
-			$("#kendaraan_view").load("main/kendaraan_view.php");
+			$("#kerjaan_view").load("main/kerjaan_view.php");
 
-			if(($("#st_kendaraan").val()) != "edit")
+			if(($("#st_kerjaan").val()) != "edit")
 			{
-			no_kendaraan :$("#no_kendaraan").val("");
-		 	nama_pemilik : $('#nama_pemilik').val("");		
-			alamat_pemilik : $('#alamat_pemilik').val("");
-			merk_kendaraan : $('#merk_kendaraan').val("");
-			tahun_kendaraan : $('#tahun_kendaraan').val("");
-			jumlah_roda : $('#jumlah_roda').val("");
-			kapasitas_kendaraan : $('#kapasitas_kendaraan').val("");
+			no_kerjaan :$("#no_kerjaan").val("");
+		 	nama_kerjaan : $('#nama_kerjaan').val("");		
+			status_kerjaan : $('#status_kerjaan').val("");
 			}
 			
 		});
@@ -303,56 +268,71 @@ $(document).ready(function() {
    
 });
 
-//simulasi
-function ceknopol(addsimulasi)
+//List Kerja
+function liskerj(addkerjaan)
 {
-	
-	<?php
-    $querys = mysql_query("select no_kendaraan from tb_kendaraan",koneksi_db());
-    $x=0;
+    <?php
+    $querys = mysql_query("select no_kerjaan from tb_kerjaan",koneksi_db());
+    
     while ($datas = mysql_fetch_array($querys))
     {
-        $no_kendaraan = $datas['no_kendaraan'];
-        echo "if (document.addsimulasi.no_kendaraan.value == \"".$no_kendaraan."\"){";
-        $x=1;
-        echo"$('#form_informasi').load('main/informasi.php?no_ken=$no_kendaraan');";
-        echo"$('#form_next').load('main/transaksi.php?no_ken=$no_kendaraan');";
-        echo "document.addsimulasi.no_kendaraan.readOnly = true;";
-        echo "return(false);}"; 
+        $no_kerjaan = $datas['no_kerjaan'];
+        echo "if (document.addkerjaan.no_kerjaan.value == \"".$no_kerjaan."\"){";
+        echo "document.getElementById('alert_no_kerjaan').innerHTML='Nomer kerjaan Sudah Dipakai';";
+        echo "document.addkerjaan.no_kerjaan.value = \"\";";
+        echo "document.addkerjaan.no_kerjaan.focus();";
+        echo "return(false);}";     
     }
-    if($x==1)
-    {
-    	echo "document.getElementById('alert_no_kendaraan').innerHTML='Nomer Kendaraan Tidak Terdaftar';"; 
-       	echo "document.addsimulasi.no_kendaraan.value = \"\";";
-        echo "document.addsimulasi.no_kendaraan.focus();";
-     	echo "return(false);";  
-   }
+  
    ?>
+   
 }
 
-$(document).ready(function() {
-$("#form_informasi").innerHTML="lalal";
-	 $("#addsimulasi").submit(function() 
-	{
-		if (!Cekkarakter(this.volume_bbm.value)) 
-		{
-			document.getElementById('alert_volume_bbm').innerHTML='Volume BBM Tidak Valid';
-			this.volume_bbm.focus();
-			return (false);
-		}else{ document.getElementById('alert_volume_bbm').innerHTML='';}
 
-			$.post('include/lib_func.php?kd=add_transaksi', {
-			no_kendaraan :$("#no_kendaraan").val(),
-		 	kode_spbu : $('#kode_spbu').val(),	
-		 	volume_bbm : $('#volume_bbm').val(),			
-			id_bbm : $('#id_bbm').val()
+$(document).ready(function() {
+
+	 $("#kerjaan_view").load("main/kerjaan_view.php");
+	 $("#addkerjaan").submit(function() 
+	{
+				
+		if (!Cekkarakter(this.no_kerjaan.value)) 
+		{
+			document.getElementById('alert_no_kerjaan').innerHTML='No kerjaan Tidak Valid';
+			this.no_kerjaan.focus();
+			return (false);
+		}else{ document.getElementById('alert_no_kerjaan').innerHTML='';}
+				
+		if (!Cekkarakter(this.nama_kerjaan.value)) 
+		{
+			document.getElementById('alert_nama_kerjaan').innerHTML='Nama Pemilik Tidak Valid';
+			this.nama_kerjaan.focus();
+			return (false);
+		}else{ document.getElementById('alert_nama_kerjaan').innerHTML='';}
+
+		if (!Cekkarakter(this.status_kerjaan.value)) 
+		{
+			document.getElementById('alert_status_kerjaan').innerHTML='Status Kerjaan Tidak Valid';
+			this.status_kerjaan.focus();
+			return (false);
+		}else{ document.getElementById('alert_status_kerjaan').innerHTML='';}	
+
+			$.post('include/lib_func.php?kd=add_kerjaan', {
+			st_kerjaan :$("#st_kerjaan").val(),
+			no_kerjaan :$("#no_kerjaan").val(),
+		 	nama_kerjaan: $('#nama_kerjaan').val(),			
+			status_kerjaan : $('#status_kerjaan').val(),
+			id_listkerjaan : $('#id_listkerjaan').val()
 			},function(data) {
 
-			document.getElementById('hasil').innerHTML=data;			 
-			no_kendaraan = $("#no_kendaraan").val();
-			$("#form_informasi").load("main/informasi.php?no_ken="+no_kendaraan);
-			$('#proses').hide();
-			
+			document.getElementById('hasil').innerHTML=data;
+			$("#kerjaan_view").load("main/kerjaan_view.php");
+
+			if(($("#st_kerjaan").val()) != "edit")
+			{
+			no_kerjaan :$("#no_kerjaan").val("");
+		 	nama_kerjaan : $('#nama_kerjaan').val("");		
+			status_kerjaan : $('#status_kerjaan').val("");
+			}
 			
 		});
 		return false;
@@ -360,17 +340,18 @@ $("#form_informasi").innerHTML="lalal";
 	});
    
 });
+
 
 function view_history(view_transaksi)
 {
 
 	kode_bulan = $("#kode_bulan").val();
 	id_tahun = $("#id_tahun").val();
-	kode_spbu = $("#kode_spbu").val();
+	kode_users = $("#kode_users").val();
 	
 	
-  $("#hasil_data").load("main/data_history.php?kode_spbu="+kode_spbu+"&id_tahun="+id_tahun+"&kode_bulan="+kode_bulan);
-	//$("#hasil_data").load("main/informasi.php?id_bulan="+id_tahun+"&id_tahun="+id_tahun+"&kode_spbu="kode_spbu);
+  $("#hasil_data").load("main/data_history.php?kode_users="+kode_users+"&id_tahun="+id_tahun+"&kode_bulan="+kode_bulan);
+	//$("#hasil_data").load("main/informasi.php?id_bulan="+id_tahun+"&id_tahun="+id_tahun+"&kode_users="kode_users);
 }
 //end
 

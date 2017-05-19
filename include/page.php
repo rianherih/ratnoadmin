@@ -17,24 +17,28 @@ if($_SESSION['role'] == "admin")
 		include"main/history_kerjaan.php";
 		break;
 		
-		case "limit":
-		include"main/limit.php";
+		case "barang":
+		include"main/barang.php";
 		break;
 
-		case "bbm":
-		include"main/bbm.php";
+		case "barcode":
+		include"main/barcode.php";
 		break;
 		
+		case "listkerja":
+		include"main/listkerja.php";
+		break;
+
 		case "simulasi":
 		include"main/simulasi.php";
 		break;
 
-		case "kendaraan":
-		include"main/kendaraan.php";
+		case "kerjaan":
+		include"main/kerjaan.php";
 		break;
 
-		case "spbu":
-		include"main/spbu.php";
+		case "users":
+		include"main/users.php";
 		break;
 
 		case "jalur":

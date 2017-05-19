@@ -47,10 +47,11 @@
 					{
 						echo"<ul class='nav navbar-nav'>
                                     <li><a href='?page=transaksi'>Data History Kerja</a></li>
-									<li><a href='?page=kendaraan'>Kerjaan</a></li>
-									<li><a href='?page=bbm'>Barcode</a></li>
-									<li><a href='?page=spbu'>User</a></li>
-                                    <li><a href='?page=limit'>Detail List Kerja</a></li>
+									<li><a href='?page=kerjaan'>Kerjaan</a></li>
+									<li><a href='?page=barcode'>Barcode</a></li>
+									<li><a href='?page=users'>User</a></li>
+                                    <li><a href='?page=barang'>Material Barang</a></li>
+                                    <li><a href='?page=listkerja'>Detail Kerja</a></li>
 									<li><a href='main/logout.php'>Logout</a></li>
 									</li>
 							   </ul>";

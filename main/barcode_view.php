@@ -22,8 +22,8 @@
                     echo"<tr align='center' bgcolor='#e8580f'>";} else { echo"<tr align='center'>";} 
                        echo" <td>".$i."</td>
                         <td>".$data_history['nomor_barcode']."</td>
-                        <td><a href='?page=bbm&st=edit&kode_barcode=".$data_history['id_barcode']."' title='Edit ".$data_history['nomor_barcode']."' ><img src='img/edit.jpg' height=25/></a></td>
-                       <td><a href='?page=jalur&kd=del_bbm&id_barcode=".$data_history['id_barcode']."' "; ?> 
+                        <td><a href='?page=barcode&st=edit&id_barcode=".$data_history['id_barcode']."' title='Edit ".$data_history['nomor_barcode']."' ><img src='img/edit.jpg' height=25/></a></td>
+                       <td><a href='?page=jalur&kd=del_barcode&id_barcode=".$data_history['id_barcode']."' "; ?> 
                        onClick="return confirm('Yakin akan menghapus <?php print $data_history['nomor_barcode'] ?> ?')"
                        <?php echo "title='Delete ".$data_history['nomor_barcode']."' ><img src='img/delete.jpg' height=25/></a></td>";
                 $i++;
