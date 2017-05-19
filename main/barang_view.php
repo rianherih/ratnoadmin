@@ -3,7 +3,7 @@
         include("../include/lib_func.php");
 
 
-     $sql = "select a.*, b.nama_barang, b.id_barang  from tb_listkerjaan a, tb_barang b where a.id_listkerjaan = b.id_listkerjaan order by a.id_listkerjaan asc";
+     $sql = "select a.*, b.nama_listkerjaan from tb_barang a, tb_listkerjaan b where a.id_listkerjaan = b.id_listkerjaan order by a.id_barang asc";
      $res = mysql_query($sql,koneksi_db());
        if(mysql_num_rows($res) != 0)
        {

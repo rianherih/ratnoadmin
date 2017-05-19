@@ -29,6 +29,10 @@ if($_SESSION['role'] == "admin")
 		include"main/listkerja.php";
 		break;
 
+		case "detailkerja":
+		include"main/detailkerja.php";
+		break;
+
 		case "simulasi":
 		include"main/simulasi.php";
 		break;

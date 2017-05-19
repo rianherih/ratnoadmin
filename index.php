@@ -46,12 +46,13 @@
 					if($_SESSION['role'] == "admin" )
 					{
 						echo"<ul class='nav navbar-nav'>
-                                    <li><a href='?page=transaksi'>Data History Kerja</a></li>
+                                    <li><a href='?page=history_kerjaan'>Data History Kerja</a></li>
 									<li><a href='?page=kerjaan'>Kerjaan</a></li>
 									<li><a href='?page=barcode'>Barcode</a></li>
 									<li><a href='?page=users'>User</a></li>
                                     <li><a href='?page=barang'>Material Barang</a></li>
-                                    <li><a href='?page=listkerja'>Detail Kerja</a></li>
+                                    <li><a href='?page=listkerja'>List Kerja</a></li>
+                                    <li><a href='?page=detailkerja'>Detail Kerja</a></li>
 									<li><a href='main/logout.php'>Logout</a></li>
 									</li>
 							   </ul>";

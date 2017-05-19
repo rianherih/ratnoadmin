@@ -248,6 +248,7 @@ $(document).ready(function() {
 			no_kerjaan :$("#no_kerjaan").val(),
 		 	nama_kerjaan: $('#nama_kerjaan').val(),			
 			status_kerjaan : $('#status_kerjaan').val(),
+			id_barcode : $('#id_barcode').val(),
 			id_listkerjaan : $('#id_listkerjaan').val()
 			},function(data) {
 
@@ -269,18 +270,18 @@ $(document).ready(function() {
 });
 
 //List Kerja
-function liskerj(addkerjaan)
+function liskerj(addlistkerja)
 {
     <?php
-    $querys = mysql_query("select no_kerjaan from tb_kerjaan",koneksi_db());
+    $querys = mysql_query("select id_listkerjaan from tb_listkerjaan",koneksi_db());
     
     while ($datas = mysql_fetch_array($querys))
     {
-        $no_kerjaan = $datas['no_kerjaan'];
-        echo "if (document.addkerjaan.no_kerjaan.value == \"".$no_kerjaan."\"){";
-        echo "document.getElementById('alert_no_kerjaan').innerHTML='Nomer kerjaan Sudah Dipakai';";
-        echo "document.addkerjaan.no_kerjaan.value = \"\";";
-        echo "document.addkerjaan.no_kerjaan.focus();";
+        $id_listkerjaan = $datas['id_listkerjaan'];
+        echo "if (document.addlistkerja.id_listkerjaan.value == \"".$id_listkerjaan."\"){";
+        echo "document.getElementById('alert_id_listkerjaan').innerHTML='ID List kerjaan Sudah Dipakai';";
+        echo "document.addlistkerja.id_listkerjaan.value = \"\";";
+        echo "document.addlistkerja.id_listkerjaan.focus();";
         echo "return(false);}";     
     }
   
@@ -291,47 +292,37 @@ function liskerj(addkerjaan)
 
 $(document).ready(function() {
 
-	 $("#kerjaan_view").load("main/kerjaan_view.php");
-	 $("#addkerjaan").submit(function() 
+	 $("#listkerja_view").load("main/listkerja_view.php");
+	 $("#addlistkerja").submit(function() 
 	{
 				
-		if (!Cekkarakter(this.no_kerjaan.value)) 
+		if (!Cekkarakter(this.id_listkerjaan.value)) 
 		{
-			document.getElementById('alert_no_kerjaan').innerHTML='No kerjaan Tidak Valid';
-			this.no_kerjaan.focus();
+			document.getElementById('alert_id_listkerjaan').innerHTML='ID List kerja Tidak Valid';
+			this.id_listkerjaan.focus();
 			return (false);
-		}else{ document.getElementById('alert_no_kerjaan').innerHTML='';}
+		}else{ document.getElementById('alert_id_listkerjaan').innerHTML='';}
 				
 		if (!Cekkarakter(this.nama_kerjaan.value)) 
 		{
-			document.getElementById('alert_nama_kerjaan').innerHTML='Nama Pemilik Tidak Valid';
+			document.getElementById('alert_nama_listkerjaan').innerHTML='Nama List Kerja Tidak Valid';
 			this.nama_kerjaan.focus();
 			return (false);
-		}else{ document.getElementById('alert_nama_kerjaan').innerHTML='';}
+		}else{ document.getElementById('alert_nama_listkerjaan').innerHTML='';}	
 
-		if (!Cekkarakter(this.status_kerjaan.value)) 
-		{
-			document.getElementById('alert_status_kerjaan').innerHTML='Status Kerjaan Tidak Valid';
-			this.status_kerjaan.focus();
-			return (false);
-		}else{ document.getElementById('alert_status_kerjaan').innerHTML='';}	
-
-			$.post('include/lib_func.php?kd=add_kerjaan', {
-			st_kerjaan :$("#st_kerjaan").val(),
-			no_kerjaan :$("#no_kerjaan").val(),
-		 	nama_kerjaan: $('#nama_kerjaan').val(),			
-			status_kerjaan : $('#status_kerjaan').val(),
-			id_listkerjaan : $('#id_listkerjaan').val()
+			$.post('include/lib_func.php?kd=add_listkerjaan', {
+			st_listkerjaan :$("#st_listkerjaan").val(),
+			id_listkerjaan :$("#id_listkerjaan").val(),
+		 	nama_listkerjaan: $('#nama_listkerjaan').val()
 			},function(data) {
 
 			document.getElementById('hasil').innerHTML=data;
-			$("#kerjaan_view").load("main/kerjaan_view.php");
+			$("#listkerja_view").load("main/listkerja_view.php");
 
-			if(($("#st_kerjaan").val()) != "edit")
+			if(($("#st_listkerja").val()) != "edit")
 			{
-			no_kerjaan :$("#no_kerjaan").val("");
-		 	nama_kerjaan : $('#nama_kerjaan').val("");		
-			status_kerjaan : $('#status_kerjaan').val("");
+			id_listkerjaan :$("#id_listkerjaan").val("");
+		 	nama_listkerjaan : $('#nama_listkerjaan').val("");	
 			}
 			
 		});
@@ -341,6 +332,70 @@ $(document).ready(function() {
    
 });
 
+//Detail List Kerja
+function detalis(addtail)
+{
+    <?php
+    $querys = mysql_query("select id_detail from tb_detail",koneksi_db());
+    
+    while ($datas = mysql_fetch_array($querys))
+    {
+        $id_detail = $datas['id_detail'];
+        echo "if (document.addtail.id_detail.value == \"".$id_detail."\"){";
+        echo "document.getElementById('alert_id_detail').innerHTML='ID Detail List kerjaan Sudah Dipakai';";
+        echo "document.addtail.id_detail.value = \"\";";
+        echo "document.addtail.id_detail.focus();";
+        echo "return(false);}";     
+    }
+  
+   ?>
+   
+}
+
+
+$(document).ready(function() {
+
+	 $("#detailkerja_view").load("main/detailkerja_view.php");
+	 $("#addtail").submit(function() 
+	{
+				
+		if (!Cekkarakter(this.id_detail.value)) 
+		{
+			document.getElementById('alert_id_detail').innerHTML='ID Detail List kerja Tidak Valid';
+			this.id_detail.focus();
+			return (false);
+		}else{ document.getElementById('alert_id_detail').innerHTML='';}
+		
+		if (!Cekkarakter(this.detail_list.value)) 
+		{
+			document.getElementById('alert_detail_list').innerHTML='Nama Detail List Kerja Tidak Valid';
+			this.detail_list.focus();
+			return (false);
+		}else{ document.getElementById('alert_detail_list').innerHTML='';}	
+
+			$.post('include/lib_func.php?kd=add_detail', {
+			st_detail:$("#st_detail").val(),
+			id_detail :$("#id_detail").val(),
+			id_listkerjaan :$("#id_listkerjaan").val(),
+		 	detail_list: $('#detail_list').val()
+			},function(data) {
+
+			document.getElementById('hasil').innerHTML=data;
+			$("#detailkerja_view").load("main/detailkerja_view.php");
+
+			if(($("#st_detail").val()) != "edit")
+			{
+			id_detail :$("#id_detail").val("");
+			id_listkerjaan : $('#id_listkerjaan').val("");
+		 	detail_list : $('#detail_list').val("");	
+			}
+			
+		});
+		return false;
+		
+	});
+   
+});
 
 function view_history(view_transaksi)
 {

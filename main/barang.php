@@ -76,7 +76,7 @@ else
         <div class="form-group">
         <select name="id_listkerjaan" id="id_listkerjaan" class="form-control" >
         <?php 
-            list_barang($id_listkerjaan);
+            list_kerja($id_listkerjaan);
         ?>  
         </select>
         </div>

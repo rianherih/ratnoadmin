@@ -117,19 +117,17 @@ if($kd == "add_listkerjaan")
     $st_listkerjaan       = $_POST['st_listkerjaan'];
     $nama_listkerjaan     = $_POST['nama_listkerjaan'];
     $id_listkerjaan       = $_POST['id_listkerjaan'];
-    $id_barcode         = $_POST['id_barcode'];
     //var_dump($jumlah_barang);
     //die();
 
     if($st_listkerjaan  == "edit")
     {
-        $sql="update tb_listkerjaan set   nama_listkerjaan ='".$nama_listkerjaan."', 
-                                    id_barcode = '".$id_barcode."'
+        $sql="update tb_listkerjaan set   nama_listkerjaan ='".$nama_listkerjaan."'
                                     where id_listkerjaan ='$id_listkerjaan'";
     }
     else
     {
-        $sql="insert into tb_listkerjaan values(null,'$nama_listkerjaan','$id_barcode')";
+        $sql="insert into tb_listkerjaan values('id_listkerjaan','$nama_listkerjaan')";
     }
 
     $result = mysql_query($sql,$link);
@@ -149,11 +147,11 @@ if($kd == "del_listkerjaan")
     $sql=mysql_query("delete from tb_listkerjaan  where id_listkerjaan ='$id_listkerjaan'",$link);
     if($sql)
     {
-       echo"<script type='text/javascript'>alert('Proses Berhasil');document.location='?page=barang'</script>";
+       echo"<script type='text/javascript'>alert('Proses Berhasil');document.location='?page=listkerja'</script>";
     }
     else
     {
-        echo"<script type='text/javascript'>alert('Proses Gagal');document.location='?page=barang'</script>";
+        echo"<script type='text/javascript'>alert('Proses Gagal');document.location='?page=listkerja'</script>";
     }
 }
 
@@ -212,6 +210,7 @@ if($kd == "add_kerjaan")
     $no_kerjaan     = $_POST['no_kerjaan'];
     $nama_kerjaan     = $_POST['nama_kerjaan'];
     $status_kerjaan   = $_POST['status_kerjaan'];
+    $id_barcode = $_POST['id_listkerjaan'];
     $id_listkerjaan = $_POST['id_listkerjaan'];
     
 
@@ -219,13 +218,14 @@ if($kd == "add_kerjaan")
     {
         $sql="update tb_kerjaan set   nama_kerjaan = '".$nama_kerjaan."',
                                         status_kerjaan = '".$status_kerjaan."',
+                                        id_barcode = '".$id_barcode."',
                                         id_listkerjaan = '".$id_listkerjaan."'
                                         where no_kerjaan ='$no_kerjaan'";
     }
     else
     {
 
-        $sql="insert into tb_kerjaan values('$no_kerjaan','$nama_kerjaan','$status_kerjaan','$id_listkerjaan')";
+        $sql="insert into tb_kerjaan values('$no_kerjaan','$nama_kerjaan','$status_kerjaan','$id_barcode','$id_listkerjaan')";
       
     }
 
@@ -255,6 +255,52 @@ if($kd == "del_kerjaan")
 }
 
 
+//Detaillistkerjaan
+if($kd == "add_detail")
+{
+    $st_detail      = $_POST['st_detail'];
+    $id_detail     = $_POST['id_detail'];
+    $id_listkerjaan     = $_POST['id_listkerjaan'];
+    $detail_list       = $_POST['detail_list'];
+    //var_dump($jumlah_barang);
+    //die();
+
+    if($st_detail  == "edit")
+    {
+        $sql="update tb_detail set   detail_list ='".$detail_list."',
+                                    id_listkerjaan ='".$id_listkerjaan."'
+                                    where id_detail ='$id_detail'";
+    }
+    else
+    {
+        $sql="insert into tb_detail values('$id_detail','id_listkerjaan','$detail_list')";
+    }
+
+    $result = mysql_query($sql,$link);
+    if($result)
+    {
+        echo "Proses Berhasil";
+    }
+    else
+    {
+        echo "Proses Gagal";
+    }
+}
+
+if($kd == "del_detail")
+{
+     $id_detail      = $_GET['id_detail'];
+    $sql=mysql_query("delete from tb_detail where id_detail ='$id_detail'",$link);
+    if($sql)
+    {
+       echo"<script type='text/javascript'>alert('Proses Berhasil');document.location='?page=detailkerja'</script>";
+    }
+    else
+    {
+        echo"<script type='text/javascript'>alert('Proses Gagal');document.location='?page=detailkerja'</script>";
+    }
+}
+
 function list_barcode($edit)
     {    
         $res        = mysql_query("select  id_barcode, nomor_barcode from tb_barcode ", koneksi_db());
@@ -275,12 +321,12 @@ function list_barcode($edit)
 //kerjaan
 function list_kerja($edit)
     {    
-        $res        = mysql_query("select  a.*, b.nama_listkerjaan, b.id_listkerjaan  from  tb_kerjaan a, tb_listkerjaan b where a.id_listkerjaan = b.id_listkerjaan ", koneksi_db());
+        $res        = mysql_query("select  a.*  from  tb_listkerjaan a", koneksi_db());
         while($data = mysql_fetch_array($res))
         {
            if(($edit == $data['id_listkerjaan']))
             {
-            echo "<option value='".$data['id_listkerjaan']."'selected='selected'>".$data['nama_kerjaan']." ".$data['nama_listkerjaan']. "</option>";
+            echo "<option value='".$data['id_listkerjaan']."'selected='selected'>".$data['id_listkerjaan']."</option>";
             }
             else
             {

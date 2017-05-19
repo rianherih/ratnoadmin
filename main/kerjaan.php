@@ -24,6 +24,7 @@ if(($st == "edit") or ($st == "detail"))
     $tampil               = mysql_fetch_array($sel2);
     $nama_kerjaan         = $tampil['nama_kerjaan'];
     $status_kerjaan       = $tampil['status_kerjaan'];
+    $id_barcode             = $tampil['id_barcode'];
     $id_listkerjaan        = $tampil['id_listkerjaan'];
 }
 
@@ -84,6 +85,13 @@ else
             <input class="form-control"  placeholder="Status kerjaan" id="status_kerjaan" name="status_kerjaan" value="<?php if($st == "edit"){ echo $status_kerjaan;} ?>" type="text">
         </div>
 
+        <div class="form-group">
+        <select name="id_barcode" id="id_barcode" class="form-control" >
+        <?php 
+            list_barcode($id_barcode);
+        ?>  
+        </select>
+        </div>
         <div class="form-group">
         <select name="id_listkerjaan" id="id_listkerjaan" class="form-control" >
         <?php 

@@ -3,7 +3,7 @@
         include("../include/lib_func.php");
 
 
-     $sql = "select a.*, b.detail_list  from tb_listkerjaan a, tb_detaillist b where a.id_listkerjaan = b.id_listkerjaan order by a.id_listkerjaan desc";
+     $sql = "select a.*  from tb_listkerjaan a  order by a.id_listkerjaan asc";
      $res = mysql_query($sql,koneksi_db());
        if(mysql_num_rows($res) != 0)
        {
@@ -15,7 +15,6 @@
                     <td>No</td>
                     <td>ID List Kerjaan</td>
                     <td>Nama Kerjaan</td>
-                    <td>Detail</td>
                      <td colspan=3 >Action</td>
                 </tr>";
         while($data_history=mysql_fetch_array($res))
@@ -25,10 +24,9 @@
                        echo" <td>".$i."</td>
                         <td>".$data_history['id_listkerjaan']."</td>
                         <td>".$data_history['nama_listkerjaan']."</td>
-                        <td>".$data_history['detail_list']."</td>
                         <td><a href='?page=listkerja&st=detail&id_listkerjaan=".$data_history['id_listkerjaan']."' title='Detail ".$data_history['id_listkerjaan']."' ><img src='img/detail.jpg' height=30/></a></td>
                        <td><a href='?page=listkerja&st=edit&id_listkerjaan=".$data_history['id_listkerjaan']."' title='Edit ".$data_history['id_listkerjaan']."' ><img src='img/edit.jpg' height=25/></a></td>
-                        <td><a href='?page=jalur&kd=del_kerjaan&id_listkerjaan=".$data_history['id_listkerjaan']."' "; ?> 
+                        <td><a href='?page=jalur&kd=del_listkerjaan&id_listkerjaan=".$data_history['id_listkerjaan']."' "; ?> 
                        onClick="return confirm('Yakin akan menghapus <?php print $data_history['nama_listkerjaan'] ?> ?')"
                        <?php echo "title='Delete ".$data_history['id_listkerjaan']."' ><img src='img/delete.jpg' height=25/></a></td>";
                 $i++;

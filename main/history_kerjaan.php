@@ -62,7 +62,7 @@ if($_SESSION['role'] =="manajemen")
 		        <select name="kode_users" id="kode_users" class="form-control" onchange="return view_history(this)" >
 		        <option value="semua">Semua Users</option>
 		        <?php 
-		            list_spbu();
+		            list_users();
 		        ?>  
 		</select>
 		</div></div>

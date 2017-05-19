@@ -40,22 +40,17 @@ else
 if($st == "detail")
 { ?>
 
-<form role='form' name='addkerjaan' id='addkerjaan'  action='' method='post' >
+<form role='form' name='addlistkerja' id='addlistkerja'  action='' method='post' >
  
         <fieldset>
         <div class="form-group">
-        <div id="alert_no_kerjaan"></div>
-            <input class="form-control" maxlength="10" placeholder="Nomer kerjaan" id="no_kerjaan" onchange="return nopol(this)" name="no_kerjaan" readonly="reaonly" value="<?php echo $no_kerjaan; ?>" type="text">
+        <div id="alert_id_listkerjaan"></div>
+            <input class="form-control" maxlength="10" placeholder="ID List kerjaan" id="id_listkerjaan" onchange="return liskerj(this)" name="id_listkerjaan" readonly="reaonly" value="<?php echo $id_listkerjaan; ?>" type="text">
         </div>
 
         <div class="form-group">
-        <div id="alert_nama_kerjaan"></div>
-            <input class="form-control" placeholder="Nama kerjaan" id="nama_kerjaan" name="nama_kerjaan" readonly="reaonly" value="<?php echo $nama_kerjaan; ?>" type="text">
-        </div>
-
-        <div class="form-group">
-        <div id="alert_status_kerjaan"></div>
-            <input class="form-control"  placeholder="Status kerjaan" id="status_kerjaan" name="status_kerjaan" readonly="reaonly" value="<?php echo $status_kerjaan; ?>" type="text">
+        <div id="alert_nama_listkerjaan"></div>
+            <input class="form-control" placeholder="Nama List kerjaan" id="nama_listkerjaan" name="nama_listkerjaan" readonly="reaonly" value="<?php echo $nama_listkerjaan; ?>" type="text">
         </div>
 
 <?php
@@ -64,30 +59,17 @@ else
 {
 ?>
 <hr/>
-<form role='form' name='addkerjaan' id='addkerjaan'  action='' method='post' >
- <input class="form-control" maxlength="10" placeholder="No Kerjaan" id="st_kerjaan" name="st_kerjaan" readonly="readonly" value="<?php echo $st; ?>" type="text">
+<form role='form' name='addlistkerja' id='addlistkerja'  action='' method='post' >
+ <input class="form-control" maxlength="10" placeholder="ID List Kerjaan" id="st_listkerjaan" name="st_listkerjaan" readonly="readonly" value="<?php echo $st; ?>" type="text">
         <fieldset>
         <div class="form-group">
-        <div id="alert_no_kerjaan"></div>
-            <input class="form-control" maxlength="10" onchange="return nopol(this)" placeholder="Nomer kerjaan" id="no_kerjaan" <?php if($st == "edit"){ echo "readonly='readonly'";} ?>name="no_kerjaan" value="<?php if($st == "edit"){ echo $no_kerjaan;} ?>" type="text">
+        <div id="alert_id_listkerjaan"></div>
+            <input class="form-control" maxlength="10" onchange="return liskerj(this)" placeholder="ID List kerjaan" id="id_listkerjaan" <?php if($st == "edit"){ echo "readonly='readonly'";} ?>name="id_listkerjaan" value="<?php if($st == "edit"){ echo $id_listkerjaan;} ?>" type="text">
         </div>
 
         <div class="form-group">
-        <div id="alert_nama_kerjaan"></div>
-            <input class="form-control" placeholder="Nama kerjaan" id="nama_kerjaan" name="nama_kerjaan" value="<?php if($st == "edit"){ echo $nama_kerjaan;} ?>" type="text">
-        </div>
-
-        <div class="form-group">
-        <div id="alert_status_kerjaan"></div>
-            <input class="form-control"  placeholder="Status kerjaan" id="status_kerjaan" name="status_kerjaan" value="<?php if($st == "edit"){ echo $status_kerjaan;} ?>" type="text">
-        </div>
-
-        <div class="form-group">
-        <select name="id_listkerjaan" id="id_listkerjaan" class="form-control" >
-        <?php 
-            list_kerja($id_listkerjaan);
-        ?>  
-        </select>
+        <div id="alert_nama_listkerjaan"></div>
+            <input class="form-control" placeholder="Nama List kerjaan" id="nama_listkerjaan" name="nama_listkerjaan" value="<?php if($st == "edit"){ echo $nama_listkerjaan;} ?>" type="text">
         </div>
 
 <?php
