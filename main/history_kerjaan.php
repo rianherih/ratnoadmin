@@ -30,8 +30,6 @@
 <div class="col-lg-6" align="center" >
         <div class="form-group">
          <select name="id_tahun" id="id_tahun" class="form-control"onchange="return view_history(this)"  >
-	         <option value="2015">2015</option>
-	         <option value="2016">2016</option>
 	         <option value="2017">2017</option>
 	         <option value="2018">2018</option>
          </select>
