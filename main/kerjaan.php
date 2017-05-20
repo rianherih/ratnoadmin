@@ -13,7 +13,7 @@ else
 
 ?>
 
-<h3 >Kendaraaan</h3>
+<h3 >Kerjaan</h3>
 <hr/>
 <div class="col-lg-6" align="center" >
 <?php

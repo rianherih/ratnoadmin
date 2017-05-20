@@ -13,8 +13,8 @@ if($kode_users == "semua")
 }
 else
 {
-	$sel_bbm = mysql_query("select a.*, b.nomor_barcode, c.nama_users from tb_history a, tb_barcode b, tb_users c 
-		where waktu_mulai like '$bln%' and a.id_barcode = b.id_barcode and c.kode_users = a.kode_users and a.kode_users='$kode_users'", koneksi_db());
+	$sel_bbm = mysql_query("select a.*, d.status_kerjaan,b.nomor_barcode, c.nama_users from tb_history a, tb_barcode b, tb_users c ,tb_kerjaan d
+		where waktu_mulai like '$bln%' and a.id_barcode = b.id_barcode and c.kode_users = a.kode_users and a.kode_users='$kode_users' group by id_history", koneksi_db());
 }
 
 if(mysql_num_rows($sel_bbm)  !=0)
@@ -24,7 +24,7 @@ if(mysql_num_rows($sel_bbm)  !=0)
 
 echo"<table width='100%' border='1'>";
 echo "<tr align='center'><th align='center'> No Kerjaan</th>
-						<th align='center'> Nama User <br/>(Liter) </th>
+						<th align='center'> Nama User <br/> </th>
 						<th align='center'> Nomor Barcode</th>
 						<th align='center'> Waktu Mulai</th>
 						<th align='center'> Waktu Selesai</th>

@@ -13,7 +13,7 @@ if($_SESSION['role'] == "admin")
 		include"main/history_kerjaan.php";
 		break;
 
-		case "transaksi":
+		case "history":
 		include"main/history_kerjaan.php";
 		break;
 		
@@ -60,11 +60,11 @@ else if($_SESSION['role'] == "manajemen")
 	switch($page)
 	{
 		default:
-		include"main/history_transaksi.php";
+		include"main/history_kerjaan.php";
 		break;
 
-		case "transaksi":
-		include"main/history_transaksi.php";
+		case "history":
+		include"main/history_kerjaan.php";
 		break;
 		
 		case "simulasi":

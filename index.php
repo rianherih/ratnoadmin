@@ -60,7 +60,7 @@
 					else if($_SESSION['role'] == "manajemen" )
 					{
 						echo"<ul class='nav navbar-nav'>
-                                    <li><a href='?page=transaksi'>Data History Kerja</a></li>
+                                    <li><a href='?page=history_kerjaan'>Data History Kerja</a></li>
 									<li><a href='main/logout.php'>Logout</a></li>
 									</li>
 							   </ul>";
