@@ -22,9 +22,9 @@ if(($st == "edit") or ($st == "detail"))
     $kode_users           = $_GET['kode_users'];
     $sel2                 = mysql_query("select a.* from tb_users a  where kode_users ='$kode_users' ",$link);
     $tampil               = mysql_fetch_array($sel2);
-    $nama_users         = $tampil['nama_users'];
-    $id_users         = $tampil['id_users'];
-    $email_users         = $tampil['email_users'];
+    $nama_users           = $tampil['nama_users'];
+    $email                = $tampil['email'];
+    $password_users       = $tampil['password_users'];
 }
 
 if($st == "edit")
@@ -46,13 +46,13 @@ if($st == "detail")
  
         <fieldset>
         <div class="form-group">
-        <div id="alert_nama_users"></div>
-            <input class="form-control" maxlength="10" placeholder="Nama Users" id="nama_users" onchange="return userval(this)" name="nama_users" readonly="reaonly" value="<?php echo $nama_users; ?>" type="text">
+        <div id="alert_kode_users"></div>
+            <input class="form-control" maxlength="10" placeholder="Kode Users" id="kode_users" onchange="return userval(this)" name="kode_users" readonly="reaonly" value="<?php echo $kode_users; ?>" type="text">
         </div>
 
         <div class="form-group">
-        <div id="alert_id_users"></div>
-            <input class="form-control" placeholder="ID Users" id="id_users" name="id_users" readonly="reaonly" value="<?php echo $id_users; ?>" type="text">
+        <div id="alert_nama_users"></div>
+            <input class="form-control" placeholder="Nama Users" id="nama_users" name="nama_users" readonly="reaonly" value="<?php echo $nama_users; ?>" type="text">
         </div>
 
         <div class="form-group">
@@ -70,18 +70,23 @@ else
  <input class="form-control" maxlength="10" placeholder="Kode Users" id="st_users" name="st_users" readonly="readonly" value="<?php echo $st; ?>" type="text">
         <fieldset>
         <div class="form-group">
-        <div id="alert_nama_users"></div>
-            <input class="form-control" maxlength="10" onchange="return userval(this)" placeholder="Nama Users" id="nama_users" <?php if($st == "edit"){ echo "readonly='readonly'";} ?>name="nama_users" value="<?php if($st == "edit"){ echo $nama_users;} ?>" type="text">
+        <div id="alert_kode_users"></div>
+            <input class="form-control" maxlength="10" onchange="return userval(this)" placeholder="Kode Users" id="kode_users" <?php if($st == "edit"){ echo "readonly='readonly'";} ?>name="kode_users" value="<?php if($st == "edit"){ echo $kode_users;} ?>" type="text">
         </div>
 
         <div class="form-group">
-        <div id="alert_id_users"></div>
-            <input class="form-control" placeholder="ID Users" id="id_users" name="id_users" value="<?php if($st == "edit"){ echo $id_users;} ?>" type="text">
+        <div id="alert_nama_users"></div>
+            <input class="form-control" placeholder="Nama Users" id="nama_users" name="nama_users" value="<?php if($st == "edit"){ echo $nama_users;} ?>" type="text">
         </div>
 
         <div class="form-group">
         <div id="alert_email_users"></div>
             <input class="form-control" placeholder="Email Users" id="email_users" name="email_users" value="<?php if($st == "edit"){ echo $email;} ?>" type="text">
+        </div>
+
+        <div class="form-group">
+        <div id="alert_password_users"></div>
+            <input class="form-control" placeholder="Password Users" id="password_users" name="password_users" value="<?php if($st == "edit"){ echo $password;} ?>" type="text">
         </div>
 
 <?php

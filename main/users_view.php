@@ -15,7 +15,7 @@
                     <td>No</td>
                     <td>Nama</td>
                     <td>ID</td>
-                    <td>email</td>
+                    <td>Email</td>
                      <td colspan=3>Action</td>
                 </tr>";
     		while($data_history=mysql_fetch_array($res))
@@ -24,9 +24,7 @@
                     echo"<tr align='center' bgcolor='#e8580f'>";} else { echo"<tr align='center'>";} 
                        echo" <td>".$i."</td>
                         <td>".$data_history['nama_users']."</td>
-                        <td>".$data_history['id_users']."</td>
                         <td>".$data_history['email']."</td>
-                        
                         <td><a href='?page=users&st=detail&kode_users=".$data_history['kode_users']."' title='Detail ".$data_history['nama_users']."' ><img src='img/detail.jpg' height=30/></a></td>
                         <td><a href='?page=users&st=edit&kode_users=".$data_history['kode_users']."' title='Edit ".$data_history['nama_users']."' ><img src='img/edit.jpg' height=25/></a></td>
                        <td><a href='?page=jalur&kd=del_users&kode_users=".$data_history['kode_users']."' "; ?> 

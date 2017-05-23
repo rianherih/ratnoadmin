@@ -1,6 +1,6 @@
 <?php
 include("lib_func.php");
-$email = stripslashes(mysql_real_escape_string(mysql_escape_string(addslashes($_POST['email']))));
+$username = stripslashes(mysql_real_escape_string(mysql_escape_string(addslashes($_POST['nama_users']))));
 $password = stripslashes(mysql_real_escape_string(mysql_escape_string(addslashes(md5($_POST['password'])))));
 
 
@@ -13,7 +13,7 @@ $sql="SELECT
 		FROM
 			tb_users
 		WHERE
-			email = '$email'
+			nama_users = '$username'
 		AND 
 			password = '$password'";
 			
@@ -28,11 +28,23 @@ $res=mysql_query($sql,koneksi_db()) or die(mysql_error());
 		$_SESSION['nama_users']	= $data['nama_users']; 
 		$_SESSION['email']		= $data['email']; 
 		$_SESSION['role']		= $data['role'];
+		$jam = date("H:i:s");
+  		$tgl = date("Y-m-d");
+  		
 
-		//
+  		$sql2="insert into tb_log values(null,".$data['kode_users'].",'$username',
+                                '$tgl',
+                                '$jam',
+                                'logged',
+                                'online')";
+	$result = mysql_query($sql2,koneksi_db()) or die(mysql_error());
+    if($result){
+    	//
 		//$page = ../;
 		header("Refresh: 0.1; url=../"); 
 		//echo"sukses";
+    }
+    		
 	}
 	else
 	{

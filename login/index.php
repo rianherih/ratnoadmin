@@ -43,9 +43,9 @@
           </tr>
           
           <tr>
-            <th width="100"><div align="left"><strong>Email</strong></div></th>
+            <th width="100"><div align="left"><strong>Username</strong></div></th>
             <th scope="col"><strong>:</strong></th>
-            <th scope="col"><input name="email" type="text" maxlength="25" size="25" /></th>
+            <th scope="col"><input name="nama_users" type="text" maxlength="25" size="25" /></th>
           </tr>
           <tr>
             <th width="100"><div align="left"><strong>Password</strong></div></th>

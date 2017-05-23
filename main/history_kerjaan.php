@@ -1,4 +1,18 @@
 <h3 >Data History Kerja</h3>
+<style>
+th{
+    color: #FFFFFF;
+    font-size: 8pt;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.1em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #969BA5;
+    border-collapse: collapse;
+    background-color: #265180;
+}
+</style>
 <hr/>
 <div class="col-lg-5" align="center" >
 <h3 align='left'>Tanggal </h3>

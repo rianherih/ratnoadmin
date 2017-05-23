@@ -150,7 +150,12 @@ $(document).ready(function() {
 	 $("#users_view").load("main/users_view.php");
 	 $("#addusers").submit(function() 
 	{
-				
+		if (!Cekkarakter(this.kode_users.value)) 
+		{
+			document.getElementById('alert_kode_users').innerHTML='Kode users Tidak Valid';
+			this.kode_users.focus();
+			return (false);
+		}else{ document.getElementById('alert_kode_users').innerHTML='';}		
 		if (!Cekkarakter(this.nama_users.value)) 
 		{
 			document.getElementById('alert_nama_users').innerHTML='Nama users Tidak Valid';
@@ -174,18 +179,21 @@ $(document).ready(function() {
 		
 
 			$.post('include/lib_func.php?kd=add_users', {
+			st_users :$("#st_users").val(),
+			kode_users :$("#kode_users").val(),
 			nama_users :$("#nama_users").val(),
 		 	id_users : $('#id_users').val(),			
-			email_users : $('#email_users').val()
+			email_users : $('#email_users').val(),
+			password_users : $('#password_users').val()
 			},function(data) {
 
 			document.getElementById('hasil').innerHTML=data;
 			$("#users_view").load("main/users_view.php");
-
-			 nama_users :$("#nama_users").val("");
+			kode_users :$("#kode_users").val("");
+			nama_users :$("#nama_users").val("");
 		 	id_users : $('#id_users').val("");			
 			email_users : $('#email_users').val("");
-	
+			password_users : $('#password_users').val("");
 			
 			
 		});

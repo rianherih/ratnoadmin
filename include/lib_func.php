@@ -159,22 +159,21 @@ if($kd == "del_listkerjaan")
 
     if($kd == "add_users")
     {
+    $st_users       = $_POST['st_users'];
+    $kode_users         = $_POST['kode_users'];
     $nama_users         = $_POST['nama_users'];
-    $id_users       = $_POST['id_users'];
     $email_users         = $_POST['email_users'];
     $password_users      = md5($_POST['password_users']);
     
-        if($st_users  == "edit")
+    if($st_users  == "edit")
     {
         $sql="update tb_users set   nama_users ='".$nama_users."', 
-                                    id_users = '".$id_users."',
-                                    email_users = '".$email_users."',
-                                    password_users = '".$password_users."'
+                                    password = '".$password_users."'
                                     where kode_users ='$kode_users'";
     }
     else
     {
-        $sql="insert into tb_users values(null,'$nama_users','$id_users','$email_users','$password_users','manajemen')";
+        $sql="insert into tb_users values('$kode_users','$nama_users','$email_users','$password_users','manajemen')";
     }
         
 
@@ -373,11 +372,11 @@ function choose_barang($edit)
 
 function list_users()
     {    
-        $res        = mysql_query("select  kode_users, nama_users, id_users  from tb_users ", koneksi_db());
+        $res        = mysql_query("select  kode_users, nama_users  from tb_users ", koneksi_db());
         while($data = mysql_fetch_array($res))
         {
           
-                echo "<option value='".$data['kode_users']."'>".$data['id_users']."'>".$data['nama_users']."</option>";
+                echo "<option value='".$data['kode_users']."'>".$data['nama_users']."</option>";
         }
     }
 ?>
