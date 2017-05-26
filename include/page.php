@@ -32,11 +32,7 @@ if($_SESSION['role'] == "admin")
 		case "detailkerja":
 		include"main/detailkerja.php";
 		break;
-
-		case "simulasi":
-		include"main/simulasi.php";
-		break;
-
+		
 		case "kerjaan":
 		include"main/kerjaan.php";
 		break;
@@ -67,8 +63,8 @@ else if($_SESSION['role'] == "manajemen")
 		include"main/history_kerjaan.php";
 		break;
 		
-		case "simulasi":
-		include"main/simulasi.php";
+		case "listuser":
+		include"main/listuser.php";
 		break;
 
 		case "logout":

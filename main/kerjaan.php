@@ -22,10 +22,11 @@ if(($st == "edit") or ($st == "detail"))
     $no_kerjaan           = $_GET['no_kerjaan'];
     $sel2                 = mysql_query("select a.* from tb_kerjaan a  where no_kerjaan ='$no_kerjaan' ",$link);
     $tampil               = mysql_fetch_array($sel2);
-    $nama_kerjaan         = $tampil['nama_kerjaan'];
-    $status_kerjaan       = $tampil['status_kerjaan'];
     $id_barcode             = $tampil['id_barcode'];
     $id_listkerjaan        = $tampil['id_listkerjaan'];
+    $nama_kerjaan         = $tampil['nama_kerjaan'];
+    $status_kerjaan       = $tampil['status_kerjaan'];
+    $waktu_estimasi       = $tampil['waktu_estimasi'];
 }
 
 if($st == "edit")

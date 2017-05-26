@@ -24,7 +24,7 @@ if(($st == "edit") or ($st == "detail"))
     $tampil               = mysql_fetch_array($sel2);
     $nama_users           = $tampil['nama_users'];
     $email                = $tampil['email'];
-    $password_users       = $tampil['password_users'];
+    $password_users       = $tampil['password'];
 }
 
 if($st == "edit")

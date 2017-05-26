@@ -13,8 +13,8 @@
            echo"<table border='1' width='100%' cellpadding='0' cellspacing='0'>
                 <tr align='center' bgcolor='#999999'>
                     <td>No</td>
-                    <td>ID Detail Kerjaan</td>
                     <td>Nama Kerjaan</td>
+                    <td>List Kerjaan</td>
                     <td>Detail Kerjaan</td>
                      <td colspan=3 >Action</td>
                 </tr>";
@@ -23,9 +23,9 @@
                  if($i%2==0){ 
                     echo"<tr align='center' bgcolor='#e8580f'>";} else { echo"<tr align='center'>";} 
                        echo" <td>".$i."</td>
-                        <td>".$data_history['id_detail']."</td>
-                        <td>".$data_history['nama_listkerjaan']."</td>
-                        <td>".$data_history['detail_list']."</td>
+                        <td align='left'>".$data_history['nama_detail']."</td>
+                        <td align='left'>".$data_history['nama_listkerjaan']."</td>
+                        <td align='left'>".$data_history['detail_list']."</td>
                         <td><a href='?page=detailkerja&st=detail&id_detail=".$data_history['id_detail']."' title='Detail ".$data_history['id_detail']."' ><img src='img/detail.jpg' height=30/></a></td>
                        <td><a href='?page=detailkerja&st=edit&id_detail=".$data_history['id_detail']."' title='Edit ".$data_history['id_detail']."' ><img src='img/edit.jpg' height=25/></a></td>
                         <td><a href='?page=jalur&kd=del_detail&id_detail=".$data_history['id_detail']."' "; ?> 

@@ -37,10 +37,10 @@ $res=mysql_query($sql,koneksi_db()) or die(mysql_error());
                                 '$jam',
                                 'logged',
                                 'online')";
+		
 	$result = mysql_query($sql2,koneksi_db()) or die(mysql_error());
     if($result){
-    	//
-		//$page = ../;
+    	
 		header("Refresh: 0.1; url=../"); 
 		//echo"sukses";
     }

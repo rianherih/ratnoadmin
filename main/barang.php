@@ -19,11 +19,11 @@ else
 <?php
 if(($st == "edit") or ($st == "detail"))
 {
-    $id_barang           = $_GET['id_barang'];
+    $id_barang            = $_GET['id_barang'];
     $sel2                 = mysql_query("select a.* from tb_barang a  where id_barang ='$id_barang' ",$link);
     $tampil               = mysql_fetch_array($sel2);
-    $nama_barang         = $tampil['nama_barang'];
-    $id_listkerjaan        = $tampil['id_listkerjaan'];
+    $nama_barang          = $tampil['nama_barang'];
+    $id_listkerjaan       = $tampil['id_listkerjaan'];
 }
 
 if($st == "edit")

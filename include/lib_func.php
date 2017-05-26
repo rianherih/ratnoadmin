@@ -115,19 +115,21 @@ if($kd == "del_barang")
 if($kd == "add_listkerjaan")
 {
     $st_listkerjaan       = $_POST['st_listkerjaan'];
-    $nama_listkerjaan     = $_POST['nama_listkerjaan'];
     $id_listkerjaan       = $_POST['id_listkerjaan'];
+    $nama_listkerjaan     = $_POST['nama_listkerjaan'];
+    $waktu_estimasi       = $_POST['waktu_estimasi'];
     //var_dump($jumlah_barang);
     //die();
 
     if($st_listkerjaan  == "edit")
     {
-        $sql="update tb_listkerjaan set   nama_listkerjaan ='".$nama_listkerjaan."'
-                                    where id_listkerjaan ='$id_listkerjaan'";
+        $sql="update tb_listkerjaan set   nama_listkerjaan ='".$nama_listkerjaan."',
+                                          waktu_estimasi ='".$waktu_estimasi."'
+                                            where id_listkerjaan ='$id_listkerjaan'";
     }
     else
     {
-        $sql="insert into tb_listkerjaan values('id_listkerjaan','$nama_listkerjaan')";
+        $sql="insert into tb_listkerjaan values('$id_listkerjaan','$nama_listkerjaan','$waktu_estimasi')";
     }
 
     $result = mysql_query($sql,$link);
@@ -207,24 +209,25 @@ if($kd == "add_kerjaan")
 {
     $st_kerjaan     = $_POST['st_kerjaan'];
     $no_kerjaan     = $_POST['no_kerjaan'];
+    $id_barcode = $_POST['id_barcode'];
+    $id_listkerjaan = $_POST['id_listkerjaan'];
     $nama_kerjaan     = $_POST['nama_kerjaan'];
     $status_kerjaan   = $_POST['status_kerjaan'];
-    $id_barcode = $_POST['id_listkerjaan'];
-    $id_listkerjaan = $_POST['id_listkerjaan'];
-    
-
+    $waktu_sisa  = $_POST['waktu_sisa'];
+ 
     if($st_kerjaan  == "edit")
     {
-        $sql="update tb_kerjaan set   nama_kerjaan = '".$nama_kerjaan."',
+        $sql="update tb_kerjaan set   id_barcode = '".$id_barcode."',
+                                        id_listkerjaan = '".$id_listkerjaan."',
+                                        nama_kerjaan = '".$nama_kerjaan."',
                                         status_kerjaan = '".$status_kerjaan."',
-                                        id_barcode = '".$id_barcode."',
-                                        id_listkerjaan = '".$id_listkerjaan."'
+                                        waktu_sisa = '".$waktu_sisa."'
                                         where no_kerjaan ='$no_kerjaan'";
     }
     else
     {
 
-        $sql="insert into tb_kerjaan values('$no_kerjaan','$nama_kerjaan','$status_kerjaan','$id_barcode','$id_listkerjaan')";
+        $sql="insert into tb_kerjaan values('$no_kerjaan','$id_barcode','$id_listkerjaan','$nama_kerjaan','$status_kerjaan','$waktu_sisa')";
       
     }
 
@@ -241,7 +244,7 @@ if($kd == "add_kerjaan")
 
 if($kd == "del_kerjaan")
 {
-     $no_kerjaan      = $_GET['no_kerjaan'];
+    $no_kerjaan      = $_GET['no_kerjaan'];
     $sql=mysql_query("delete from tb_kerjaan where no_kerjaan ='$no_kerjaan'",$link);
     if($sql)
     {
@@ -260,6 +263,7 @@ if($kd == "add_detail")
     $st_detail      = $_POST['st_detail'];
     $id_detail     = $_POST['id_detail'];
     $id_listkerjaan     = $_POST['id_listkerjaan'];
+    $nama_detail     = $_POST['nama_detail'];
     $detail_list       = $_POST['detail_list'];
     //var_dump($jumlah_barang);
     //die();
@@ -267,12 +271,13 @@ if($kd == "add_detail")
     if($st_detail  == "edit")
     {
         $sql="update tb_detail set   detail_list ='".$detail_list."',
-                                    id_listkerjaan ='".$id_listkerjaan."'
+                                    id_listkerjaan ='".$id_listkerjaan."',
+                                    nama_detail ='".$nama_detail."'
                                     where id_detail ='$id_detail'";
     }
     else
     {
-        $sql="insert into tb_detail values('$id_detail','id_listkerjaan','$detail_list')";
+        $sql="insert into tb_detail values('$id_detail','$id_listkerjaan','$nama_detail','$detail_list')";
     }
 
     $result = mysql_query($sql,$link);

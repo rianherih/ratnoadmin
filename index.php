@@ -61,6 +61,7 @@
 					{
 						echo"<ul class='nav navbar-nav'>
                                     <li><a href='?page=history_kerjaan'>Data History Kerja</a></li>
+                                    <li><a href='?page=listuser'>List Pegawai</a></li>
 									<li><a href='main/logout.php'>Logout</a></li>
 									</li>
 							   </ul>";
@@ -105,20 +106,7 @@
                     </div>
 
             </div>
-            
-        
-            <div class="col-lg-3 col-sm-3">
-                    <h2>Contact Info</h2>
-                    <hr>
-                    <address>
-                       Sistem Monitoring Alat Bantu Kerja Blueprint Reading                       
-                    </address>
-                    <address>
-                    Nama : Ratno Sylvianto<br/>
-                    NIM  : 10111917<br/>
-                    </address>
-            </div>
-        </div>       
+          
         <hr>
 
         <div class="row" >

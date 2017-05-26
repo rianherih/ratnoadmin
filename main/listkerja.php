@@ -23,6 +23,7 @@ if(($st == "edit") or ($st == "detail"))
     $sel2                 = mysql_query("select a.* from tb_listkerjaan a  where id_listkerjaan ='$id_listkerjaan' ",$link);
     $tampil               = mysql_fetch_array($sel2);
     $nama_listkerjaan         = $tampil['nama_listkerjaan'];
+    $waktu_estimasi         = $tampil['waktu_estimasi'];
 }
 
 if($st == "edit")
@@ -40,7 +41,7 @@ else
 if($st == "detail")
 { ?>
 
-<form role='form' name='addlistkerja' id='addlistkerja'  action='' method='post' >
+<form role='form' name='addlistkerjaan' id='addlistkerjaan'  action='' method='post' >
  
         <fieldset>
         <div class="form-group">
@@ -53,13 +54,18 @@ if($st == "detail")
             <input class="form-control" placeholder="Nama List kerjaan" id="nama_listkerjaan" name="nama_listkerjaan" readonly="reaonly" value="<?php echo $nama_listkerjaan; ?>" type="text">
         </div>
 
+         <div class="form-group">
+        <div id="alert_waktu_listkerjaan"></div>
+            <input class="form-control" placeholder="Waktu Estimasi" id="waktu_estimasi" name="waktu_estimasi" readonly="reaonly" value="<?php echo $waktu_estimasi; ?>" type="text">
+        </div>
+
 <?php
 }
 else
 {
 ?>
 <hr/>
-<form role='form' name='addlistkerja' id='addlistkerja'  action='' method='post' >
+<form role='form' name='addlistkerjaan' id='addlistkerjaan'  action='' method='post' >
  <input class="form-control" maxlength="10" placeholder="ID List Kerjaan" id="st_listkerjaan" name="st_listkerjaan" readonly="readonly" value="<?php echo $st; ?>" type="text">
         <fieldset>
         <div class="form-group">
@@ -70,6 +76,11 @@ else
         <div class="form-group">
         <div id="alert_nama_listkerjaan"></div>
             <input class="form-control" placeholder="Nama List kerjaan" id="nama_listkerjaan" name="nama_listkerjaan" value="<?php if($st == "edit"){ echo $nama_listkerjaan;} ?>" type="text">
+        </div>
+
+        <div class="form-group">
+        <div id="alert_waktu_listkerjaan"></div>
+            <input class="form-control" placeholder="Waktu Estimasi" id="waktu_estimasi" name="waktu_estimasi" value="<?php if($st == "edit"){ echo $waktu_estimasi;} ?>" type="text">
         </div>
 
 <?php

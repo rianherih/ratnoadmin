@@ -23,6 +23,7 @@ if(($st == "edit") or ($st == "detail"))
     $sel2                 = mysql_query("select a.* from tb_detail a  where id_detail ='$id_detail' ",$link);
     $tampil               = mysql_fetch_array($sel2);
     $detail_list         = $tampil['detail_list'];
+    $nama_detail         = $tampil['nama_detail'];
     $id_listkerjaan         = $tampil['id_listkerjaan'];
 }
 
@@ -54,6 +55,10 @@ if($st == "detail")
             <input class="form-control" placeholder="Detail List kerjaan" id="detail_list" name="detail_list" readonly="reaonly" value="<?php echo $detail_list; ?>" type="text">
         </div>
 
+        <div class="form-group">
+        <div id="alert_nama_detail"></div>
+            <input class="form-control" placeholder="Nama Detail List kerjaan" id="nama_detail" name="nama_detail" readonly="reaonly" value="<?php echo $nama_detail; ?>" type="text">
+        </div>
 <?php
 }
 else
@@ -71,6 +76,11 @@ else
         <div class="form-group">
         <div id="alert_detail_list"></div>
             <input class="form-control" placeholder="Detail List kerjaan" id="detail_list" name="detail_list" value="<?php if($st == "edit"){ echo $detail_list;} ?>" type="text">
+        </div>
+
+        <div class="form-group">
+        <div id="alert_nama_detail"></div>
+            <input class="form-control" placeholder="Nama detail kerjaan" id="nama_detail" name="nama_detail" value="<?php if($st == "edit"){ echo $nama_detail;} ?>" type="text">
         </div>
 
          <div class="form-group">
