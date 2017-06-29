@@ -23,7 +23,6 @@ if(($st == "edit") or ($st == "detail"))
     $sel2                 = mysql_query("select a.* from tb_kerjaan a  where no_kerjaan ='$no_kerjaan' ",$link);
     $tampil               = mysql_fetch_array($sel2);
     $id_barcode             = $tampil['id_barcode'];
-    $id_listkerjaan        = $tampil['id_listkerjaan'];
     $nama_kerjaan         = $tampil['nama_kerjaan'];
     $status_kerjaan       = $tampil['status_kerjaan'];
     $waktu_estimasi       = $tampil['waktu_estimasi'];
@@ -90,13 +89,6 @@ else
         <select name="id_barcode" id="id_barcode" class="form-control" >
         <?php 
             list_barcode($id_barcode);
-        ?>  
-        </select>
-        </div>
-        <div class="form-group">
-        <select name="id_listkerjaan" id="id_listkerjaan" class="form-control" >
-        <?php 
-            list_kerja($id_listkerjaan);
         ?>  
         </select>
         </div>

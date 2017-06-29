@@ -330,7 +330,7 @@ function list_kerja($edit)
         {
            if(($edit == $data['id_listkerjaan']))
             {
-            echo "<option value='".$data['id_listkerjaan']."'selected='selected'>".$data['id_listkerjaan']."</option>";
+            echo "<option value='".$data['id_listkerjaan']."'selected='selected'>".$data['nama_listkerjaan']."</option>";
             }
             else
             {
@@ -384,4 +384,22 @@ function list_users()
                 echo "<option value='".$data['kode_users']."'>".$data['nama_users']."</option>";
         }
     }
+
+    //kerjaan
+function list_nomorkerjaan($edit)
+    {    
+        $res        = mysql_query("select  no_kerjaan,nama_kerjaan from tb_kerjaan ", koneksi_db());
+        while($data = mysql_fetch_array($res))
+        {
+           if(($edit == $data['no_kerjaan']))
+            {
+            echo "<option value='".$data['no_kerjaan']."'selected='selected'>".$data['nama_kerjaan']."</option>";
+            }
+            else
+            {
+                echo "<option value='".$data['no_kerjaan']."'>".$data['nama_kerjaan']."</option>";
+            }
+        }
+    }
+
 ?>

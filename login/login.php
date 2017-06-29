@@ -1,6 +1,6 @@
 <?php
 include("../include/lib_func.php");
-$email = stripslashes(mysql_real_escape_string(mysql_escape_string(addslashes($_POST['email']))));
+$nama_users = stripslashes(mysql_real_escape_string(mysql_escape_string(addslashes($_POST['nama_users']))));
 $password = stripslashes(mysql_real_escape_string(mysql_escape_string(addslashes(md5($_POST['password'])))));
 
 
@@ -13,7 +13,7 @@ $sql="SELECT
 		FROM
 			tb_users
 		WHERE
-			email = '$email'
+			nama_users = '$nama_users'
 		AND 
 			password = '$password'";
 			
@@ -22,7 +22,7 @@ $res=mysql_query($sql,koneksi_db()) or die(mysql_error());
 	if(mysql_num_rows($res)==1) 
 	{
 	$response = array();
-	$response["login"] = array();
+	$response["status"] = array();
 		while($data=mysql_fetch_array($res)){
 		session_start();
 		
@@ -35,7 +35,7 @@ $res=mysql_query($sql,koneksi_db()) or die(mysql_error());
 		//$page = ../;
 		header("Refresh: 0.1; url=../"); 
 		//echo"sukses";
-		array_push($response["login"], $_SESSION);
+		array_push($response["status"], $_SESSION);
 		}
 	$response["success"] = "1";
 	echo json_encode($response);

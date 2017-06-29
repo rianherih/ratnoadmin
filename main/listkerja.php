@@ -22,6 +22,7 @@ if(($st == "edit") or ($st == "detail"))
     $id_listkerjaan           = $_GET['id_listkerjaan'];
     $sel2                 = mysql_query("select a.* from tb_listkerjaan a  where id_listkerjaan ='$id_listkerjaan' ",$link);
     $tampil               = mysql_fetch_array($sel2);
+    $no_kerjaan             = $tampil['no_kerjaan'];
     $nama_listkerjaan         = $tampil['nama_listkerjaan'];
     $waktu_estimasi         = $tampil['waktu_estimasi'];
 }
@@ -81,6 +82,13 @@ else
         <div class="form-group">
         <div id="alert_waktu_listkerjaan"></div>
             <input class="form-control" placeholder="Waktu Estimasi" id="waktu_estimasi" name="waktu_estimasi" value="<?php if($st == "edit"){ echo $waktu_estimasi;} ?>" type="text">
+        </div>
+        <div class="form-group">
+        <select name="no_kerjaan" id="no_kerjaan" class="form-control" >
+        <?php 
+            list_nomorkerjaan($no_kerjaan);
+        ?>  
+        </select>
         </div>
 
 <?php

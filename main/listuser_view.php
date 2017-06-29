@@ -3,7 +3,7 @@
         include("../include/lib_func.php");
 
 
-     $sql = "select a.*, b.status from tb_users a,tb_log b where a.kode_users = b.kode_users and role ='manajemen' order by kode_users asc LIMIT 1,100";
+     $sql = "select a.*, b.status from tb_users a,tb_log b where a.kode_users = b.kode_users and role ='manajemen' order by kode_users asc LIMIT 2,100";
      $res = mysql_query($sql,koneksi_db());
        if(mysql_num_rows($res) != 0)
        {

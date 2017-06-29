@@ -3,7 +3,7 @@
         include("../include/lib_func.php");
 
 
-	   $sql	= "select a.*, b.nama_listkerjaan, c.nomor_barcode  from tb_kerjaan a, tb_listkerjaan b, tb_barcode c where a.id_listkerjaan = b.id_listkerjaan and a.id_barcode = c.id_barcode order by a.no_kerjaan asc";
+	   $sql	= "select a.*, c.nomor_barcode  from tb_kerjaan a, tb_barcode c where a.id_barcode = c.id_barcode order by a.no_kerjaan asc";
 	   $res	= mysql_query($sql,koneksi_db());
        if(mysql_num_rows($res) != 0)
        {
@@ -16,7 +16,6 @@
                     <td>No kerjaan</td>
                     <td>Nomor Barcode</td>
                     <td>Nama Kerjaan</td>
-                    <td>List Kerja</td>
                     <td>Sisa Waktu</td>
                     <td>Status</td>                    
                     <td colspan=3 >Action</td>
@@ -29,7 +28,6 @@
                         <td>".$data_history['no_kerjaan']."</td>
                         <td>".$data_history['nomor_barcode']."</td>
                         <td>".$data_history['nama_kerjaan']."</td>
-                        <td>".$data_history['nama_listkerjaan']."</td>
                         <td>".$data_history['waktu_sisa']." jam</td>
                         <td>".$data_history['status_kerjaan']."</td>
                         <td align='center'><a href='?page=kerjaan&st=detail&no_kerjaan=".$data_history['no_kerjaan']."' title='Detail ".$data_history['no_kerjaan']."' ><img src='img/detail.jpg' height=30/></a></td>
